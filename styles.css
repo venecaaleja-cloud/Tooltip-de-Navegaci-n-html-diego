@@ -1,0 +1,99 @@
+/* ===REINICIO Y FONDO===*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1a2e; /* Fondo oscuro elegante */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  color: #e0e0e0;
+}
+
+/* ===== CONTENEDOR DE LA NAVEGACIÓN ===== */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Espacio entre enlaces y puntos */
+  background: #16213e; /* Fondo del menú un poco más claro */
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra profunda */
+}
+
+.separador {
+  color: #4a4a6a;
+  font-size: 1.2rem;
+}
+
+/* ===== ENLACES (EL ANCLA) ===== */
+.enlace-nav {
+  position: relative; /* ¡CLAVE! Ancla el tooltip a este enlace */
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+/* Efecto al pasar el ratón por el enlace */
+.enlace-nav:hover {
+  color: #a78bfa; /* Violeta claro */
+  background: rgba(167, 139, 250, 0.1);
+}
+
+/* ===== EL TOOLTIP (EL GLOBO) ===== */
+.tooltip {
+  position: absolute; /* Se posiciona respecto al enlace */
+  bottom: 140%;       /* Aparece por encima del texto */
+  left: 50%;          /* Se posiciona a la mitad del enlace... */
+  transform: translateX(-50%) scale(0.8); /* ...y se centra con translateX */
+  
+  background: #0f3460; /* Fondo azul oscuro */
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(167, 139, 250, 0.3); /* Borde sutil violeta */
+
+  /* ESTADO INICIAL: Oculto */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Evita que el tooltip bloquee el ratón */
+  
+  /* Animación suave (Aparición) */
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ===== LA FLECHITA DEL TOOLTIP ===== */
+/* Usamos un pseudo-elemento (::after) para crear el triangulito */
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Justo debajo del globo */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* El truco del triángulo con bordes */
+  border-width: 6px;
+  border-style: solid;
+  border-color: #0f3460 transparent transparent transparent; /* Color arriba, transparente los lados */
+}
+
+/* ===== ESTADO AL PASAR EL RATÓN (HOVER) ===== */
+/* Cuando el ratón está sobre el enlace, activamos el tooltip */
+.enlace-nav:hover .tooltip {
+  opacity: 1;           /* Aparece */
+  visibility: visible;
+  transform: translateX(-50%) scale(1); /* Crece a su tamaño real */
+}
